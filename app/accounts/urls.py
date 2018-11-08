@@ -1,9 +1,12 @@
-from django.conf.urls import url
-from .views import auth_login, profile
 from django.urls import path
+from django.contrib.auth import views as auth_views
 
-app_name = "accounts"
+from . import views
+
+app_name = 'accounts'
+
 urlpatterns = [
-    path('login/', auth_login, name='auth_login'),
-    path('profile/', profile, name='profile'),
+    path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    # path('login/', views.login_view, name='login'),
+    path('profile/', views.profile, name='profile'),
 ]
